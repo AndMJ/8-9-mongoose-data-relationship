@@ -1,4 +1,3 @@
-//TODO: apply db transactions
 module.exports = () => {
     const modelCars = require("../models/modelCars")()
 
