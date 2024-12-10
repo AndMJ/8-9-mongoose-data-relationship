@@ -16,7 +16,7 @@ module.exports = () => {
         let conn;
         try {
             conn = await dbConnection()
-            return await Car.find()
+            return await Car.find().populate()
         } catch (e) {
             return e
         }finally {
@@ -27,8 +27,13 @@ module.exports = () => {
     model.create = async (data) => {
         let conn;
         try {
-            conn = await dbConnection()
-            const newCar = new Car({...data})
+            conn = await dbConnection() //TODO: DB TRANSACTIONSSSSS
+            // find a company, then ...
+            const newCar = new Car({
+                manufacturer: foundCompany._id,
+                model: data.model,
+                year: data.year,
+            })
             return await newCar.save()
         } catch (e) {
             return e

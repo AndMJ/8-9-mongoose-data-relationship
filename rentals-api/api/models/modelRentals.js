@@ -3,8 +3,14 @@ const {mongoose, dbConnection} = require("../db/mongodb")
 module.exports = () => {
 
     const Rental = mongoose.model("Rentals", new mongoose.Schema({
-        car: {type: mongoose.Types.ObjectId, required: true},
-        customer: {type: mongoose.Types.ObjectId, required: true}
+        car: {
+            type: mongoose.Types.ObjectId,
+            ref: "Cars"
+        },
+        customer: {
+            type: mongoose.Types.ObjectId,
+            ref: "Customers"
+        }
     }))
 
     const model = []
