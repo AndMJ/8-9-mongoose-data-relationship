@@ -1,15 +1,6 @@
-const {mongoose, dbConnection} = require("../db/mongodb")
+const {mongoose, dbConnection, Car} = require("../db/db-rentals")
 
 module.exports = () => {
-
-    const Car = mongoose.model("Cars", new mongoose.Schema({
-        manufacturer: {
-            type: mongoose.Types.ObjectId,
-            ref: "Companies"
-        },
-        model: {type: String, required: true},
-        year: {type: Number, required: true}
-    }))
 
     const model = []
     model.getAll = async () => {
@@ -24,7 +15,7 @@ module.exports = () => {
         }
     }
 
-    model.create = async (data) => {
+    /*model.create = async (data) => {
         let conn;
         try {
             conn = await dbConnection() //TODO: DB TRANSACTIONSSSSS
@@ -40,7 +31,7 @@ module.exports = () => {
         }finally {
             if (conn) conn.disconnect()
         }
-    }
+    }*/
 
     return model
 }

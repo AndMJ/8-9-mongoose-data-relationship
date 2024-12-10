@@ -1,17 +1,6 @@
-const {mongoose, dbConnection} = require("../db/mongodb")
+const {mongoose, dbConnection, Rental} = require("../db/db-rentals")
 //TODO: apply db transactions
 module.exports = () => {
-
-    const Rental = mongoose.model("Rentals", new mongoose.Schema({
-        car: {
-            type: mongoose.Types.ObjectId,
-            ref: "Cars"
-        },
-        customer: {
-            type: mongoose.Types.ObjectId,
-            ref: "Customers"
-        }
-    }))
 
     const model = []
     model.getAll = async () => {
