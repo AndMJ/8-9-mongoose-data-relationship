@@ -11,6 +11,7 @@ app.set("port", process.env.PORT)
 //routes
 require("./api/routes/routeCompanies")(app)
 require("./api/routes/routeCars")(app)
+require("./api/routes/routeCustomers")(app)
 
 app.listen(app.get("port"), () => {
     console.log(`Listening to port ${app.get("port")}`)

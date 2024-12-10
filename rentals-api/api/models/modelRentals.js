@@ -2,10 +2,9 @@ const {mongoose, dbConnection} = require("../db/mongodb")
 //TODO: apply db transactions
 module.exports = () => {
 
-    const Customer = mongoose.model("Customers", new mongoose.Schema({
-        name: {type: String, required: true},
-        age: {type: Number, required: true},
-        email: {type: String, required: true},
+    const Rental = mongoose.model("Rentals", new mongoose.Schema({
+        car: {type: mongoose.Types.ObjectId, required: true},
+        customer: {type: mongoose.Types.ObjectId, required: true}
     }))
 
     const model = []
@@ -13,7 +12,7 @@ module.exports = () => {
         let conn;
         try {
             conn = await dbConnection()
-            return await Customer.find()
+            return await Rental.find()
         } catch (e) {
             return e
         }finally {
