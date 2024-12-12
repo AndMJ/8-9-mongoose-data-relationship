@@ -15,23 +15,23 @@ module.exports = () => {
         }
     }
 
-    /*model.create = async (data) => {
+    model.create = async (data) => {
         let conn;
         try {
             conn = await dbConnection() //TODO: DB TRANSACTIONSSSSS
-            // find a company, then ...
             const newCar = new Car({
-                manufacturer: foundCompany._id,
+                manufacturer: data.manufacturer,
                 model: data.model,
                 year: data.year,
             })
-            return await newCar.save()
+            const result = await newCar.save()
+            return await Car.findById(result._id).populate()
         } catch (e) {
             return e
         }finally {
             if (conn) conn.disconnect()
         }
-    }*/
+    }
 
     return model
 }

@@ -15,5 +15,19 @@ module.exports = () => {
         }
     }
 
+    model.getByID = async (id) => {
+        let conn;
+        try {
+            conn = await dbConnection()
+            const company = await Company.findById(id)
+
+            return company
+        } catch (e) {
+            return e
+        }finally {
+            conn.disconnect()
+        }
+    }
+
     return model
 }
