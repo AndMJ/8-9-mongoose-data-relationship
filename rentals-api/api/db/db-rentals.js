@@ -8,6 +8,12 @@ const dbConnection = async () => {
     }
 }
 
+//ID validation
+// const isValidID = (id) => {
+//     return mongoose.SchemaTypes.ObjectId.isValid(id)
+// }
+
+//DB schemas
 const Company = mongoose.model("Companies", new mongoose.Schema({
     name: {type: String, required: true},
     industry: {type: String, required: true},
@@ -22,7 +28,8 @@ const Customer = mongoose.model("Customers", new mongoose.Schema({
 const Car = mongoose.model("Cars", new mongoose.Schema({
     manufacturer: {
         type: mongoose.Types.ObjectId,
-        ref: "Companies"
+        ref: "Companies",
+        required: true
     },
     model: {type: String, required: true},
     year: {type: Number, required: true}
@@ -31,11 +38,13 @@ const Car = mongoose.model("Cars", new mongoose.Schema({
 const Rental = mongoose.model("Rentals", new mongoose.Schema({
     car: {
         type: mongoose.Types.ObjectId,
-        ref: "Cars"
+        ref: "Cars",
+        required: true
     },
     customer: {
         type: mongoose.Types.ObjectId,
-        ref: "Customers"
+        ref: "Customers",
+        required: true
     }
 }))
 
@@ -45,5 +54,6 @@ module.exports = {
     Company,
     Customer,
     Car,
-    Rental
+    Rental,
+    //isValidID
 }
