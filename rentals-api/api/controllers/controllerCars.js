@@ -1,4 +1,4 @@
-const {companyJoiSchema, carJoiSchema} = require("../db/dataValidation")
+const {companyJoiSchema, carJoiSchema} = require("../db/dto")
 const Joi = require("joi");
 
 module.exports = () => {
@@ -34,7 +34,7 @@ module.exports = () => {
                 return res.status(404).json(carIsValid.error.details[0].message)
             }
 
-            const result = await modelCars.create({ //TODO: incorrect approach for registering cars, it is not doing .populate() its not embedding? idk
+            const result = await modelCars.create({
                 model: req.body.model.trim(),
                 manufacturer: req.body.manufacturer,
                 year: req.body.year

@@ -7,7 +7,7 @@ module.exports = () => {
         let conn;
         try {
             conn = await dbConnection()
-            return await Car.find().populate()
+            return await Car.find().populate("manufacturer")
         } catch (e) {
             return e
         }finally {
