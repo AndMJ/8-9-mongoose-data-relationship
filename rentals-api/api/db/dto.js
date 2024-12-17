@@ -10,9 +10,9 @@ const carJoiSchema = Joi.object({
 
 const customerJoiSchema = Joi.object({
     _id: Joi.objectID(),
-    name: {type: String, required: true},
-    age: {type: Number, required: true},
-    email: {type: String, required: true},
+    name: Joi.string(),
+    age: Joi.number(),
+    email: Joi.string()
 })
 
 const companyJoiSchema = Joi.object({
